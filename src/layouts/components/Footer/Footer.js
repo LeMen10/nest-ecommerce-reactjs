@@ -231,16 +231,16 @@ function Footer() {
                                     <img className={cx("mobile-icon")} src={images.iconFb} alt="" />
                                 </Link>
                                 <Link to={'#'} style={{ marginLeft: '4px'}}>
-                                    <img className={cx("mobile-icon")} src={images.iconFb} alt="" />
+                                    <img className={cx("mobile-icon")} src={images.iconIns} alt="" />
                                 </Link>
                                 <Link to={'#'} style={{ marginLeft: '4px'}}>
-                                    <img className={cx("mobile-icon")} src={images.iconFb} alt="" />
+                                    <img className={cx("mobile-icon")} src={images.iconTwitter} alt="" />
                                 </Link>
                                 <Link to={'#'} style={{ marginLeft: '4px'}}>
-                                    <img className={cx("mobile-icon")} src={images.iconFb} alt="" />
+                                    <img className={cx("mobile-icon")} src={images.iconYt} alt="" />
                                 </Link>
                                 <Link to={'#'} style={{ marginLeft: '4px'}}>
-                                    <img className={cx("mobile-icon")} src={images.iconFb} alt="" />
+                                    <img className={cx("mobile-icon")} src={images.iconPinterest} alt="" />
                                 </Link>
                             </div>
                             <p className={cx("")}>Up to 15% discount on your first subscribe</p>

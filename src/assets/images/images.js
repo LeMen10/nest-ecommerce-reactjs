@@ -4,13 +4,19 @@ const images = {
     sliderLast: require('~/assets/images/slider-2.png'),
     f8Login: require('~/assets/images/f8_login.png'),
     noImage: require('~/assets/images/no-image.png'),
+
     iconEmail: require('~/assets/images/icon-email-2.png'),
     iconClock: require('~/assets/images/icon-clock.png'),
     iconContact: require('~/assets/images/icon-contact.png'),
     iconLocation: require('~/assets/images/icon-location.png'),
+    iconPhone: require('~/assets/images/phone-call.png'),
+
     iconFb: require('~/assets/images/icon-facebook-white.png'),
     iconYt: require('~/assets/images/icon-youtube-white.png'),
-    iconPhone: require('~/assets/images/phone-call.png'),
+    iconIns: require('~/assets/images/icon-instagram-white.png'),
+    iconTwitter: require('~/assets/images/icon-twitter-white.png'),
+    iconPinterest: require('~/assets/images/icon-pinterest-white.png'),
+
     about1: require('~/assets/images/about-1.png'),
     about2: require('~/assets/images/about-2.png'),
     about3: require('~/assets/images/about-3.png'),
