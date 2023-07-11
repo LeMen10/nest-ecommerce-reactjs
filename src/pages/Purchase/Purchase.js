@@ -139,7 +139,7 @@ function Purchase() {
                                     <div className={cx('order-state')}>
                                         <span>{result.status}</span>
                                     </div>
-                                    <Link to={''}>
+                                    <div>
                                         <div>
                                             <span className={cx('product-detail')}>
                                                 <div className={cx('product-detail-left')}>
@@ -158,7 +158,7 @@ function Purchase() {
                                                 </div>
                                             </span>
                                         </div>
-                                    </Link>
+                                    </div>
                                 </div>
                             </div>
                             <div className={cx('order-line')}></div>
