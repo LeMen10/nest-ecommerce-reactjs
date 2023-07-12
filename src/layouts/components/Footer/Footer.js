@@ -227,7 +227,7 @@ function Footer() {
                         <div className={cx("socical-info")}>
                             <div className={cx("mobile-social-icon")}>
                                 <h6 className={cx("last-title")}>Follow Us</h6>
-                                <Link to={'#'} style={{ marginLeft: '4px'}}>
+                                <Link to={'https://www.facebook.com/meennn.vv'} style={{ marginLeft: '4px'}}>
                                     <img className={cx("mobile-icon")} src={images.iconFb} alt="" />
                                 </Link>
                                 <Link to={'#'} style={{ marginLeft: '4px'}}>
