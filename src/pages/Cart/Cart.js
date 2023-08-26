@@ -6,10 +6,11 @@ import { useNavigate, Link } from 'react-router-dom';
 import className from 'classnames/bind';
 import styles from './Cart.module.scss';
 import Image from '~/components/Image';
+import PropTypes from 'prop-types';
 
 const cx = className.bind(styles);
 
-function Cart() {
+function Cart({ setHeaderVariable }) {
     const navigate = useNavigate();
     const [listCart, setListCart] = useState([]);
     const [checkedItems, setCheckedItems] = useState([]);
@@ -105,8 +106,12 @@ function Cart() {
 
         api.post(`${process.env.REACT_APP_BASE_URL}/delete/${dataId}`)
             .then((res) => {
-                setListCart(res.data.cart);
-                setPriceTotal(res.data.price_total);
+                if (res.status === 200) {
+                    const count = res.data.count;
+                    if (setHeaderVariable) setHeaderVariable(count);
+                    setListCart(res.data.cart);
+                    setPriceTotal(res.data.price_total);
+                }
             })
             .catch((error) => {
                 const err = error.response.data.message;
@@ -281,5 +286,7 @@ function Cart() {
         </div>
     );
 }
-
+Cart.propTypes = {
+    setHeaderVariable: PropTypes.func,
+};
 export default Cart;

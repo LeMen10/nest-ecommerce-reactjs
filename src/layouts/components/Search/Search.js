@@ -12,10 +12,17 @@ function Search() {
     const navigate = useNavigate();
 
     const handleSubmit = () => {
-        var data = dataSearch
-        setDataSearch('')
+        var data = dataSearch;
+        setDataSearch('');
         navigate(`/search?_query=${data}`);
     };
+
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            handleSubmit();
+        }
+    };
+
     return (
         <div className={cx('search')}>
             <div className={cx('input-search-wrap')}>
@@ -24,6 +31,7 @@ function Search() {
                     placeholder="Search for items..."
                     value={dataSearch}
                     onChange={(e) => setDataSearch(e.target.value)}
+                    onKeyDown={handleKeyDown}
                 />
                 <button className={cx('icon-search-header')} onClick={handleSubmit}>
                     <FontAwesomeIcon className={cx('icon-user')} icon={faMagnifyingGlass} />

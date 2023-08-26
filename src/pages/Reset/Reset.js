@@ -102,7 +102,8 @@ function Reset() {
                                         <div className={cx('auth-form__group')}>
                                             <input
                                                 type="password"
-                                                placeholder="Mật khẩu cũ mà bạn đã quên 🤡"
+                                                // placeholder="Mật khẩu cũ mà bạn đã quên 🤡"
+                                                placeholder="Nhập mật khẩu mới."
                                                 name="password"
                                                 className={cx('auth-form__input')}
                                                 id="auth-form__password-login"

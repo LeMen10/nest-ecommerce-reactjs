@@ -109,7 +109,8 @@ function Forgot() {
                                         <div className={cx('auth-form__group')}>
                                             <input
                                                 type="text"
-                                                placeholder="Có cái mật khẩu cũng không nhớ 😒, nhập Email đi tao reset cho 😏"
+                                                // placeholder="Có cái mật khẩu cũng không nhớ 😒, nhập Email đi tao reset cho 😏"
+                                                placeholder="Nhập Email để reset mật khẩu."
                                                 name="email"
                                                 className={cx('auth-form__input')}
                                                 id="auth-form__user-login"

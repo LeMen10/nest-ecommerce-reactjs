@@ -8,10 +8,11 @@ import Image from '~/components/Image';
 import Cookies from 'js-cookie';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import PropTypes from 'prop-types';
 
 const cx = className.bind(styles);
 
-function Detail() {
+function Detail({ setHeaderVariable }) {
     const { slug } = useParams();
     const navigate = useNavigate();
     const [quantityProduct, setQuantityProduct] = useState(1);
@@ -58,16 +59,21 @@ function Detail() {
             quantity: quantityProduct,
         })
             .then((res) => {
-                toast.success('Đã thêm sản phẩm vào Giỏ hàng', {
-                    position: 'top-right',
-                    autoClose: 2000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: 'light',
-                });
+                if (res.status === 200) {
+                    const count = res.data.count;
+                    if (setHeaderVariable) setHeaderVariable(count);
+
+                    toast.success('Đã thêm sản phẩm vào Giỏ hàng', {
+                        position: 'top-right',
+                        autoClose: 2000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: 'light',
+                    });
+                }
             })
             .catch((error) => {});
     };
@@ -131,10 +137,12 @@ function Detail() {
                             </div>
                         </div>
 
-                        <div className={cx("description-long-wrap", "m-auto")}>
-                            <div className={cx("description-long")}>
-                                <Link to={''} className={cx("description-categori")}>Description</Link>
-                                <div className={cx("description-text")}>
+                        <div className={cx('description-long-wrap', 'm-auto')}>
+                            <div className={cx('description-long')}>
+                                <Link to={''} className={cx('description-categori')}>
+                                    Description
+                                </Link>
+                                <div className={cx('description-text')}>
                                     <p>
                                         Uninhibited carnally hired played in whimpered dear gorilla koala depending and
                                         much yikes off far quetzal goodness and from for grimaced goodness unaccountably
@@ -151,7 +159,7 @@ function Detail() {
                                     </p>
                                 </div>
 
-                                <ul className={cx("product-more-infor")}>
+                                <ul className={cx('product-more-infor')}>
                                     <li>
                                         <span>Type Of Packing</span>
                                         Bottle
@@ -173,7 +181,7 @@ function Detail() {
                                         Carton
                                     </li>
                                 </ul>
-                                <p className={cx("description-text")}>
+                                <p className={cx('description-text')}>
                                     Laconic overheard dear woodchuck wow this outrageously taut beaver hey hello far
                                     meadowlark imitatively egregiously hugged that yikes minimally unanimous pouted
                                     flirtatiously as beaver beheld above forward energetic across this jeepers
@@ -189,5 +197,9 @@ function Detail() {
         </Fragment>
     );
 }
+
+Detail.propTypes = {
+    setHeaderVariable: PropTypes.func,
+};
 
 export default Detail;

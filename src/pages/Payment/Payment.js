@@ -18,6 +18,7 @@ function Payment() {
 
         api.post(`${process.env.REACT_APP_BASE_URL}/pay`)
             .then((res) => {
+                console.log(res.data)
                 window.location.href = res.data;
             })
             .catch((error) => {

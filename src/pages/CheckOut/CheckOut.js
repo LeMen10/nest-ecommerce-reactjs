@@ -14,7 +14,8 @@ const cx = className.bind(styles);
 function CheckOut() {
     const location = useLocation();
     const data = location.state?.data;
-    const [payment, setPayment] = useState('later_money');
+    const [payment, setPayment] = useState('Thanh toán khi nhận hàng');
+    console.log(payment)
     const navigate = useNavigate();
     const [listCart, setListCart] = useState([]);
     const [fullName, setFullName] = useState();
@@ -111,6 +112,7 @@ function CheckOut() {
             order_items: newListCart,
             recipientDetails: addressActive,
             status: 'Chưa thanh toán',
+            payment_methods: payment,
         })
             .then((res) => {
                 const order_id = res.data.order_id;
@@ -137,6 +139,7 @@ function CheckOut() {
             order_items: newListCart,
             recipientDetails: addressActive,
             status: 'Chưa thanh toán',
+            payment_methods: payment,
         })
             .then((res) => {
                 if (res.status === 200) navigate('/user/purchase?type=noted');
@@ -237,8 +240,8 @@ function CheckOut() {
 
                 <div className={cx('shipping-address-wrap')}>
                     <h4 className={cx('shipping-address-title')}>
-                        <img alt='' style={{ marginRight: '10px', width: '20px' }} src={images.iconLocation} /> Địa chỉ nhận
-                        hàng
+                        <img alt="" style={{ marginRight: '10px', width: '20px' }} src={images.iconLocation} /> Địa chỉ
+                        nhận hàng
                     </h4>
                     <div className={cx('shipping-address')}>
                         {addressActive && (
@@ -323,14 +326,14 @@ function CheckOut() {
                                     type="radio"
                                     id="later_money"
                                     name="radio"
-                                    value="later_money"
+                                    value="Thanh toán khi nhận hàng"
                                     onChange={handleRadio}
-                                    checked={payment === 'later_money'}
+                                    checked={payment === 'Thanh toán khi nhận hàng'}
                                 />
                                 <label htmlFor="later_money">Thanh toán tiền khi nhận hàng</label>
                             </div>
                             <div className={cx('paypal')}>
-                                <input type="radio" id="paypal" name="radio" value="paypal" onChange={handleRadio} />
+                                <input type="radio" id="paypal" name="radio" value="Thanh toán bằng Paypal" onChange={handleRadio} />
                                 <label htmlFor="paypal">Thanh toán tiền bằng Paypal</label>
                             </div>
                         </div>
@@ -340,7 +343,7 @@ function CheckOut() {
                             Tổng thanh toán: <span className={cx('price-total-order')}>{priceTotal}$</span>
                         </div>
                         <div className={cx('buy-button')}>
-                            {payment === 'later_money' ? (
+                            {payment === 'Thanh toán khi nhận hàng' ? (
                                 <button
                                     className={cx('btn', 'btn--primary', 'btn-sm')}
                                     onClick={handleBuyLaterMoney}

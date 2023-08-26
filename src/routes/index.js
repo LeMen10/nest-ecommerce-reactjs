@@ -9,15 +9,17 @@ import Register from "~/pages/Register/Register"
 import Search from "~/pages/Search/Search"
 import Detail from "~/pages/Detail/Detail"
 import Success from "~/pages/Success/Success"
-import Payment from "~/pages/Payment/Payment"
+// import Payment from "~/pages/Payment/Payment"
 import Reset from "~/pages/Reset/Reset"
 import Forgot from "~/pages/Forgot/Forgot"
 import Purchase from "~/pages/Purchase/Purchase"
+import Cancel from "~/pages/Cancel/Cancel"
 
 const publicRouter = [
     {path: '/', component: Home},
     {path: '/success', component: Success, layout: null},
-    {path: '/payment', component: Payment, layout: null},
+    {path: '/cancel', component: Cancel, layout: null},
+    // {path: '/payment', component: Payment, layout: null},
     {path: '/product/:slug', component: Detail},
     {path: '/cart', component: Cart},
     {path: '/checkout', component: CheckOut},

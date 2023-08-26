@@ -11,11 +11,12 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const cx = className.bind(styles);
 
-function Header() {
+function Header({ variable }) {
+    console.log(variable)
     const navigate = useNavigate();
     const [boxShadowHeader, setBoxShadowHeader] = useState('');
     const [username, setUsername] = useState();
-    // const [countItemsCart, setCountItemsCart] = useState();
+    const [countItemsCart, setCountItemsCart] = useState();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -47,26 +48,26 @@ function Header() {
             });
     }, [navigate]);
 
-    // useEffect(() => {
-    //     const token = Cookies.get('token');
-    //     if (token) {
-    //         const api = axios.create({
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //                 Authorization: `Bearer ${token}`,
-    //             },
-    //         });
+    useEffect(() => {
+        const token = Cookies.get('token');
+        if (token) {
+            const api = axios.create({
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                },
+            });
 
-    //         api.get(`${process.env.REACT_APP_BASE_URL}/number-items-cart`)
-    //             .then((res) => {
-    //                 
-    //                 setCountItemsCart(res.data.count);
-    //             })
-    //             .catch((error) => {
-    //                 
-    //             });
-    //     }
-    // }, []);
+            api.get(`${process.env.REACT_APP_BASE_URL}/number-items-cart`)
+                .then((res) => {
+                    
+                    setCountItemsCart(res.data.count);
+                })
+                .catch((error) => {
+                    
+                });
+        }
+    }, [variable]);
 
     const handleLogout = () => {
         Cookies.remove('token');
@@ -76,9 +77,9 @@ function Header() {
         <div className={cx('header', `${boxShadowHeader}`)}>
             <div className={cx('container_m')}>
                 <div className={cx('header-wrap')}>
-                    <div className={cx('logo-primary')}>
+                    <Link to={'/'} className={cx('logo-primary')}>
                         <img className={cx('icon-logo')} src={images.logo} alt="nest-ecommerce" />
-                    </div>
+                    </Link>
                     <div className={cx('header-mid')}>
                         <Search />
                         <div className={cx('header-nav', 'mt-20')}>
@@ -113,7 +114,7 @@ function Header() {
                         </Link>
                         <Link to={'/cart'} className={cx('icon-cart')}>
                             <CartIcon />
-                            {/* <span className={cx('count-product-cart')}>{countItemsCart || 0}</span> */}
+                            <span className={cx('count-product-cart')}>{countItemsCart || 0}</span>
                         </Link>
                         {username ? (
                             <div className={cx('header-action-logged')}>

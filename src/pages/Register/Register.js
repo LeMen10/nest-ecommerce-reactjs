@@ -24,7 +24,7 @@ function Register() {
                 email,
             })
             .then(function (res) {
-                if (res.status === 200) navigate('/');
+                if (res.status === 200) navigate('/login', {state: { from: 'register' }});
             })
             .catch(function (error) {
                 const err = error.response.data.message;

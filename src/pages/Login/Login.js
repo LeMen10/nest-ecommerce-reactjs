@@ -2,7 +2,7 @@ import { Fragment, useState } from 'react';
 import className from 'classnames/bind';
 import axios from 'axios';
 import styles from './Login.module.scss';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useLocation } from 'react-router-dom';
 import images from '~/assets/images/images';
 import Cookies from 'js-cookie';
 import { ToastContainer, toast } from 'react-toastify';
@@ -11,10 +11,11 @@ import 'react-toastify/dist/ReactToastify.css';
 const cx = className.bind(styles);
 
 function Login() {
+    const location = useLocation();
     const [username, setUserName] = useState('');
     const [password, setPassword] = useState('');
     const expires = new Date(Date.now() + 3 * 24 * 60 * 60 * 1000);
-
+    const previousPage = location.state?.from;
     const navigate = useNavigate();
 
     const handleSubmit = () => {
@@ -25,11 +26,16 @@ function Login() {
             })
             .then(function (response) {
                 Cookies.set('token', response.data.accessToken, { expires });
-                navigate('/');
+                if (previousPage === 'register') {
+                    navigate(-3);
+                } else {
+                    navigate(-1);
+                }
+                // navigate('/');
             })
             .catch(function (error) {
                 const err = error.response.data.message;
-                if(err === 'Missing inputs'){
+                if (err === 'Missing inputs') {
                     toast.warn('VVui lòng nhập đủ thông tin 😘.', {
                         position: 'top-right',
                         autoClose: 3000,
@@ -41,7 +47,7 @@ function Login() {
                         theme: 'light',
                     });
                 }
-                if(err === 'Invalid credentials'){
+                if (err === 'Invalid credentials') {
                     toast.warn('Không tìm thấy tài khoản của bạn 🥺. Có thể bạn đã nhập sai thông tin.', {
                         position: 'top-right',
                         autoClose: 3000,
